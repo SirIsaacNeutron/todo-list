@@ -9,7 +9,7 @@ module.exports = {
         path: path.resolve(__dirname, "dist"),
         clean: true,
     },
-    devtool: 'inline-source-map',
+    devtool: "inline-source-map",
     plugins: [
         new HtmlWebpackPlugin({
             title: "Todo List",
@@ -17,4 +17,12 @@ module.exports = {
             template: "src/template.html",
         }),
     ],
+    module: {
+        rules: [
+            {
+                test: /\.css$/i,
+                use: ["style-loader", "css-loader"],
+            },
+        ],
+    },
 }

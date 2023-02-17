@@ -1,3 +1,5 @@
 import "./styles.css"
 
-console.log("webpack testing")
+import DOMStuff from "./DOMStuff"
+
+DOMStuff.addButtonListeners()

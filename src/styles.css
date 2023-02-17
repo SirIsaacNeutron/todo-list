@@ -1,6 +1,7 @@
 :root {
     --nav-bg: #9be8ff;
     --sidebar-bg: rgb(227, 248, 255);
+    --header-padding: 30px;
 }
 
 * {
@@ -22,7 +23,7 @@ header {
 
     background-color: var(--nav-bg);
 
-    padding: 20px;
+    padding: 10px var(--header-padding);
 
     grid-row: 1;
     grid-column: 1 / -1;
@@ -31,10 +32,25 @@ header {
 nav {
     background-color: var(--sidebar-bg);
 
-    padding: 10px;
-
     grid-row: 2;
     grid-column: 1;
+}
+
+.main-links {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    padding: 0 var(--header-padding);
+    margin: 20px 0 5px;
+
+    font-size: 1.5rem;
+}
+
+.projects-header {
+    font-size: 1.6rem;
+
+    padding: var(--header-padding);
 }
 
 main {

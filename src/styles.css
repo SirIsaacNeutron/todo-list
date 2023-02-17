@@ -1,10 +1,12 @@
 :root {
-    --nav-bg: #9be8ff;
+    --header-bg: #9be8ff;
     --sidebar-bg: rgb(227, 248, 255);
     --header-padding: 30px;
+    --sidebar-button-pad: 10px;
 }
 
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
@@ -21,7 +23,7 @@ header {
     display: flex;
     align-items: center;
 
-    background-color: var(--nav-bg);
+    background-color: var(--header-bg);
 
     padding: 10px var(--header-padding);
 
@@ -36,12 +38,31 @@ nav {
     grid-column: 1;
 }
 
+nav button {
+    outline: none;
+    border: none;
+    text-align: left;
+    background-color: var(--sidebar-bg);
+
+    font-size: inherit;
+    padding: var(--sidebar-button-pad);
+
+    border-radius: 10px;
+
+    transition: all 150ms ease-in-out;
+}
+
+nav button:hover {
+    background-color:rgb(159, 231, 255);
+}
+
 .main-links {
     display: flex;
     flex-direction: column;
     gap: 20px;
 
-    padding: 0 var(--header-padding);
+    /* This should automatically align the button text in .main-links with the header text */
+    padding: 0 calc(var(--header-padding) - var(--sidebar-button-pad));
     margin: 20px 0 5px;
 
     font-size: 1.5rem;
@@ -67,7 +88,7 @@ footer {
     justify-content: center;
     gap: 10px;
 
-    background-color: var(--nav-bg);
+    background-color: var(--header-bg);
 
     grid-column: 1 / -1;
     padding: 15px;

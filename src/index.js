@@ -9,8 +9,14 @@ function addButtonListeners() {
     const linkButtons = [...mainLinks.children]
     linkButtons.forEach(buttonElement => {
         buttonElement.addEventListener("click", () => {
-            const newList = new TodoList(buttonElement.textContent)
-            todoLists[buttonElement.textContent] = newList
+            let list
+            if (!todoLists[buttonElement.textContent]) {
+                list = new TodoList(buttonElement.textContent)
+                todoLists[buttonElement.textContent] = list
+            }
+            else {
+                list = todoLists[buttonElement.textContent]
+            }
             todoLists[buttonElement.textContent].render()
         })
     })

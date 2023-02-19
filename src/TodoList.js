@@ -1,3 +1,5 @@
+import { format } from "date-fns"
+
 import Todo from "./Todo"
 
 export default class TodoList {
@@ -59,6 +61,22 @@ export default class TodoList {
             todoDate.textContent = this.list[i].dueDate
             todoDate.classList.add("date")
 
+            todoDate.addEventListener("click", () => {
+                const dateInput = document.createElement("input")
+                dateInput.setAttribute("type", "date")
+                dateInput.classList.add("date")
+
+                dateInput.addEventListener("change", () => {
+                    const dateString = format(new Date(dateInput.value), "MM-dd-yyyy")
+
+                    this.list[i].dueDate = dateString
+                    todoDate.textContent = dateString
+                    dateInput.replaceWith(todoDate)
+                })
+
+                todoDate.replaceWith(dateInput)
+            })
+
             todo.appendChild(todoDate)
 
             todos.appendChild(todo)
@@ -109,7 +127,7 @@ export default class TodoList {
 
                 const newTodoTitle = input.value
 
-                const newTodo = new Todo(newTodoTitle, "", "No date", "High")
+                const newTodo = new Todo(newTodoTitle, "", "Click to add date", "High")
 
                 this.addTodo(newTodo)
 

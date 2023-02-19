@@ -30,7 +30,28 @@ export default class TodoList {
             todo.classList.add("todo")
 
             const todoTitle = document.createElement("p")
+            todoTitle.classList.add("todo-title")
             todoTitle.textContent = this.list[i].title
+
+            todoTitle.addEventListener("click", () => {
+                const todoTitleInput = document.createElement("input")
+                todoTitleInput.value = todoTitle.textContent
+
+                todoTitleInput.addEventListener("keydown", e => {
+                    if (e.code === "Enter") {
+                        if (todoTitleInput.value === "") {
+                            alert("Todos can't have empty titles.")
+                            return
+                        }
+                        this.list[i].title = todoTitleInput.value
+                        todoTitle.textContent = todoTitleInput.value
+
+                        todoTitleInput.replaceWith(todoTitle)
+                    }
+                })
+
+                todoTitle.replaceWith(todoTitleInput)
+            })
 
             todo.appendChild(todoTitle)
 
@@ -86,7 +107,6 @@ export default class TodoList {
             form.addEventListener("submit", e => {
                 e.preventDefault()
 
-                console.log("Called")
                 const newTodoTitle = input.value
 
                 const newTodo = new Todo(newTodoTitle, "", "No date", "High")

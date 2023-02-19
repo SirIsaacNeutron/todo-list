@@ -8,7 +8,7 @@
     --submit-btn-bg: #8afc8a;
     --cancel-btn-bg: #fd5050;
 
-    --todo-padding: 5px;
+    --todo-padding: 10px;
 }
 
 * {
@@ -29,6 +29,10 @@ button {
     outline: none;
     border: none;
     text-align: left;
+}
+
+input:focus {
+    outline: none;
 }
 
 header {
@@ -113,6 +117,10 @@ main h2 {
     padding: var(--todo-padding);
 }
 
+.todo-title {
+    cursor: pointer;
+}
+
 .date {
     margin-left: auto;
     margin-right: 10px;
@@ -145,10 +153,6 @@ main h2 {
 .add-todo-form input {
     padding: var(--todo-padding);
     font-size: 1rem;
-}
-
-.add-todo-form input:focus {
-    outline: none;
 }
 
 .form-btns {

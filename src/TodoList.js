@@ -19,5 +19,19 @@ export default class TodoList {
         title.textContent = this.title
 
         main.appendChild(title)
+
+        const todos = document.createElement("div")
+        todos.classList.add("todos")
+
+        for (const i = 0; i < this.list.length; ++i) {
+            // render todos
+        }
+
+        const addTodoBtn = document.createElement("button")
+        addTodoBtn.classList.add("add-todo-btn")
+        addTodoBtn.textContent = "+ Add todo"
+
+        todos.appendChild(addTodoBtn)
+        main.appendChild(todos)
     }
 }

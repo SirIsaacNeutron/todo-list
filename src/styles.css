@@ -3,6 +3,8 @@
     --sidebar-bg: rgb(227, 248, 255);
     --header-padding: 30px;
     --sidebar-button-pad: 10px;
+
+    --hover-bg-color: #e2e2e2;
 }
 
 * {
@@ -86,6 +88,13 @@ main h2 {
     margin-bottom: 10px;
 }
 
+.todos {
+    display: flex;
+    flex-direction: column;
+
+    gap: 15px;
+}
+
 /* Todos */
 
 .todo {
@@ -98,6 +107,25 @@ main h2 {
 .date {
     margin-left: auto;
     margin-right: 10px;
+}
+
+.add-todo-btn {
+    border: 1px solid grey;
+    border-radius: 5px;
+
+    width: 100%;
+    text-align: left;
+    background-color: white;
+
+    font-size: 1rem;
+
+    padding: 5px;
+
+    transition: background-color 150ms ease-in-out;
+}
+
+.add-todo-btn:hover {
+    background-color: var(--hover-bg-color);
 }
 
 /* .todo-header {

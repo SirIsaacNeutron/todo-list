@@ -30,6 +30,16 @@ export default class TodoList {
         for (let i = 0; i < this.list.length; ++i) {
             const todo = document.createElement("article")
             todo.classList.add("todo")
+            
+            if (this.list[i].priority === "Low") {
+                todo.classList.add("low-priority")
+            }
+            else if (this.list[i].priority === "Medium") {
+                todo.classList.add("med-priority")
+            }
+            else {
+                todo.classList.add("high-priority")
+            }
 
             const todoTitle = document.createElement("p")
             todoTitle.classList.add("todo-title")
@@ -75,6 +85,27 @@ export default class TodoList {
                 })
 
                 todoDate.replaceWith(dateInput)
+            })
+
+            todo.addEventListener("click", e => {
+                if (e.target.tagName === "P" || e.target.tagName === "INPUT") { return }
+
+                if (todo.classList.contains("low-priority")) {
+                    todo.classList.remove("low-priority")
+                    todo.classList.add("med-priority")
+                    this.list[i].priority = "Medium"
+                }
+                else if (todo.classList.contains("med-priority")) {
+                    todo.classList.remove("med-priority")
+                    todo.classList.add("high-priority")
+                    this.list[i].priority = "High"
+                }
+                else {
+                    todo.classList.remove("high-priority")
+                    todo.classList.add("low-priority")
+                    this.list[i].priority = "Low"
+
+                }
             })
 
             todo.appendChild(todoDate)
@@ -127,7 +158,7 @@ export default class TodoList {
 
                 const newTodoTitle = input.value
 
-                const newTodo = new Todo(newTodoTitle, "", "Click to add date", "High")
+                const newTodo = new Todo(newTodoTitle, "", "Click to add date", "Low")
 
                 this.addTodo(newTodo)
 

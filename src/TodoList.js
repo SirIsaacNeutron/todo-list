@@ -41,6 +41,21 @@ export default class TodoList {
                 todo.classList.add("high-priority")
             }
 
+            const todoCheckbox = document.createElement("input")
+            todoCheckbox.setAttribute("type", "checkbox")
+            todoCheckbox.classList.add("todo-checkbox")
+
+            todoCheckbox.addEventListener("click", () => {
+                this.list.splice(i, 1)
+
+                // If I used todo.remove() this listener wouldn't render the page correctly
+                // after deletions. i would not apply to the correct todos after a deletion, and
+                // this would cause the page to render the wrong todos once it is re-selected
+                this.render()
+            })
+
+            todo.appendChild(todoCheckbox)
+
             const todoTitle = document.createElement("p")
             todoTitle.classList.add("todo-title")
             todoTitle.textContent = this.list[i].title

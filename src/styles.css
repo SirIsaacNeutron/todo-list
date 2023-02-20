@@ -141,6 +141,10 @@ main h2 {
     cursor: pointer;
 }
 
+.todo-checkbox {
+    margin-right: 10px;
+}
+
 .date {
     margin-left: auto;
     margin-right: 10px;

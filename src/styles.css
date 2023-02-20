@@ -109,12 +109,20 @@ main h2 {
 /* Todos */
 
 .todo {
-    border: 1px solid grey;
+    background-color: #f4f4f4;
     border-radius: 5px;
     
     display: flex;
     align-items: center;
     padding: var(--todo-padding);
+
+    transition: all 150ms ease-in-out;
+}
+
+.todo:hover {
+    transform: scale(1.005);
+    /* Shadow helps create a sense of popping out */
+    box-shadow: 3px 3px 5px 2px rgb(0 0 0 / .2);
 }
 
 .todo-title {

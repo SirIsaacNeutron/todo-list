@@ -1,5 +1,3 @@
-import { format } from "date-fns"
-
 import Todo from "./Todo"
 
 export default class TodoList {
@@ -16,6 +14,7 @@ export default class TodoList {
     }
 
     render() {
+        // console.log(this.list)
         const main = document.querySelector("main")
         main.replaceChildren()
 
@@ -28,103 +27,7 @@ export default class TodoList {
         todos.classList.add("todos")
 
         for (let i = 0; i < this.list.length; ++i) {
-            const todo = document.createElement("article")
-            todo.classList.add("todo")
-            
-            if (this.list[i].priority === "Low") {
-                todo.classList.add("low-priority")
-            }
-            else if (this.list[i].priority === "Medium") {
-                todo.classList.add("med-priority")
-            }
-            else {
-                todo.classList.add("high-priority")
-            }
-
-            const todoCheckbox = document.createElement("input")
-            todoCheckbox.setAttribute("type", "checkbox")
-            todoCheckbox.classList.add("todo-checkbox")
-
-            todoCheckbox.addEventListener("click", () => {
-                this.list.splice(i, 1)
-
-                // If I used todo.remove() this listener wouldn't render the page correctly
-                // after deletions. i would not apply to the correct todos after a deletion, and
-                // this would cause the page to render the wrong todos once it is re-selected
-                this.render()
-            })
-
-            todo.appendChild(todoCheckbox)
-
-            const todoTitle = document.createElement("p")
-            todoTitle.classList.add("todo-title")
-            todoTitle.textContent = this.list[i].title
-
-            todoTitle.addEventListener("click", () => {
-                const todoTitleInput = document.createElement("input")
-                todoTitleInput.value = todoTitle.textContent
-
-                todoTitleInput.addEventListener("keydown", e => {
-                    if (e.code === "Enter") {
-                        if (todoTitleInput.value === "") {
-                            alert("Todos can't have empty titles.")
-                            return
-                        }
-                        this.list[i].title = todoTitleInput.value
-                        todoTitle.textContent = todoTitleInput.value
-
-                        todoTitleInput.replaceWith(todoTitle)
-                    }
-                })
-
-                todoTitle.replaceWith(todoTitleInput)
-            })
-
-            todo.appendChild(todoTitle)
-
-            const todoDate = document.createElement("p")
-            todoDate.textContent = this.list[i].dueDate
-            todoDate.classList.add("date")
-
-            todoDate.addEventListener("click", () => {
-                const dateInput = document.createElement("input")
-                dateInput.setAttribute("type", "date")
-                dateInput.classList.add("date")
-
-                dateInput.addEventListener("change", () => {
-                    const dateString = format(new Date(dateInput.value), "MM-dd-yyyy")
-
-                    this.list[i].dueDate = dateString
-                    todoDate.textContent = dateString
-                    dateInput.replaceWith(todoDate)
-                })
-
-                todoDate.replaceWith(dateInput)
-            })
-
-            todo.addEventListener("click", e => {
-                if (e.target.tagName === "P" || e.target.tagName === "INPUT") { return }
-
-                if (todo.classList.contains("low-priority")) {
-                    todo.classList.remove("low-priority")
-                    todo.classList.add("med-priority")
-                    this.list[i].priority = "Medium"
-                }
-                else if (todo.classList.contains("med-priority")) {
-                    todo.classList.remove("med-priority")
-                    todo.classList.add("high-priority")
-                    this.list[i].priority = "High"
-                }
-                else {
-                    todo.classList.remove("high-priority")
-                    todo.classList.add("low-priority")
-                    this.list[i].priority = "Low"
-
-                }
-            })
-
-            todo.appendChild(todoDate)
-
+            const todo = this.list[i].getDOMTodo(this.list, i, this.render)
             todos.appendChild(todo)
         }
 
@@ -172,9 +75,7 @@ export default class TodoList {
                 e.preventDefault()
 
                 const newTodoTitle = input.value
-
-                const newTodo = new Todo(newTodoTitle, "", "Click to add date", "Low")
-
+                const newTodo = new Todo(newTodoTitle, "Click to add date", "Low")
                 this.addTodo(newTodo)
 
                 // Redraw the whole page

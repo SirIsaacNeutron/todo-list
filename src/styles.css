@@ -109,6 +109,20 @@ nav button:hover {
 .project-link {
     display: flex;
     align-items: center;
+
+    width: 80%;
+    font-size: 1rem;
+
+    padding: var(--sidebar-button-pad);
+    border-radius: 10px;
+
+    margin-left: calc(var(--header-padding));
+
+    transition: background-color 150ms ease-in-out;
+}
+
+.project-link:hover {
+    background-color:rgb(159, 231, 255);
 }
 
 .add-project-form {

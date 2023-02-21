@@ -14,14 +14,37 @@ export default class ProjectList {
         for (let i = 0; i < this.projectList.length; ++i) {
             const currentProject = this.projectList[i]
 
-            const projectButton = document.createElement("button")
-            projectButton.textContent = currentProject.title
+            const projectLink = document.createElement("div")
+            projectLink.classList.add("project-link")
 
-            projectButton.addEventListener("click", () => {
+            const checkbox = document.createElement("input")
+            checkbox.setAttribute("type", "checkbox")
+            checkbox.classList.add("todo-checkbox")
+
+            checkbox.addEventListener("click", () => {
+                this.projectList.splice(i, 1)
+
+                // Delete all content in the main area
+                const main = document.querySelector("main")
+                main.replaceChildren()
+
+                this.render()
+            })
+
+            projectLink.appendChild(checkbox)
+
+            const projectTitle = document.createElement("p")
+            projectTitle.textContent = currentProject.title
+
+            projectLink.appendChild(projectTitle)
+
+            projectLink.addEventListener("click", e => {
+                if (e.target.tagName === "INPUT") { return }
+
                 currentProject.render()
             })
 
-            projectLinks.appendChild(projectButton)
+            projectLinks.appendChild(projectLink)
         }
 
         const addProjectBtn = document.createElement("button")

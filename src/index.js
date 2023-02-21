@@ -1,8 +1,10 @@
 import "./styles.css"
 
 import TodoList from "./TodoList"
+import ProjectList from "./ProjectList"
 
 const todoLists = {}
+const projectList = new ProjectList()
 
 function addButtonListeners() {
     const mainLinks = document.querySelector(".main-links")
@@ -23,3 +25,4 @@ function addButtonListeners() {
 }
 
 addButtonListeners()
+projectList.render()

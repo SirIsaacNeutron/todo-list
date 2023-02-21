@@ -84,8 +84,34 @@ nav button:hover {
 .projects-header {
     font-size: 1.6rem;
 
-    padding: var(--header-padding);
+    margin-left: var(--header-padding);
+    margin-top: 20px;
+    margin-bottom: 10px;
 }
+
+.project-links {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.project-links button {
+    width: 80%;
+    font-size: 1rem;
+
+    padding: var(--todo-padding);
+
+    transition: background-color 150ms ease-in-out;
+    
+    margin-left: calc(var(--header-padding));
+}
+
+.project-link {
+    display: flex;
+    align-items: center;
+}
+
+/* The main content area (where todo lists are displayed) */
 
 main {
     padding: 25px;
@@ -221,6 +247,8 @@ main h2 {
     background-color: var(--cancel-btn-bg);
     color: white;
 }
+
+/* Footer */
 
 footer {
     display: flex;

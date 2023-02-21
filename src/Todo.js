@@ -69,7 +69,10 @@ export default class Todo {
             dateInput.classList.add("date")
 
             dateInput.addEventListener("change", () => {
-                const dateString = format(new Date(dateInput.value), "MM-dd-yyyy")
+                // date-fns format() seems to have a very strange bug
+                // If you don't replace() like this the day will be off by one
+                // https://stackoverflow.com/questions/68807970/parse-function-in-date-fns-returns-one-day-previous-value
+                const dateString = format(new Date(dateInput.value.replace(/-/, "/")), "MM-dd-yyyy")
 
                 this.dueDate = dateString
                 todoDate.textContent = dateString

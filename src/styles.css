@@ -253,7 +253,7 @@ main h2 {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 30px;
+    gap: 10px;
 
     margin-top: 10px;
 
@@ -268,6 +268,9 @@ main h2 {
 
 .submit-btn {
     background-color: var(--submit-btn-bg);
+
+    flex: 1 1 0;
+    text-align: center;
     
     transition: background-color 150ms ease-in-out;
 }
@@ -278,6 +281,9 @@ main h2 {
 
 .cancel-btn {
     color: var(--cancel-btn-bg);
+
+    flex: 1 1 0;
+    text-align: center;
 
     background: white;
     border: 1px solid var(--cancel-btn-bg);

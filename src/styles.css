@@ -111,6 +111,34 @@ nav button:hover {
     align-items: center;
 }
 
+.add-project-form {
+    margin-left: calc(var(--header-padding));
+
+    width: auto;
+}
+
+.add-project-form input {
+    width: 80%;
+
+    padding: var(--todo-padding);
+    font-size: 1rem;
+
+    padding: 5px;
+}
+
+.add-project-form .form-btns {
+    gap: 5px;
+    width: 80%;
+
+    display: flex;
+    justify-content: start;
+}
+
+.add-project-form .form-btns button {
+    margin-left: 0;
+    text-align: center;
+}
+
 /* The main content area (where todo lists are displayed) */
 
 main {

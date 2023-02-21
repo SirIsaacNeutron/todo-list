@@ -26,3 +26,6 @@ function addButtonListeners() {
 
 addButtonListeners()
 projectList.render()
+
+const homeListBtn = document.querySelector(".home-list-btn")
+homeListBtn.click()

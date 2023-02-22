@@ -128,11 +128,11 @@ nav button:hover {
 .add-project-form {
     margin-left: calc(var(--header-padding));
 
-    width: auto;
+    width: 80%;
 }
 
 .add-project-form input {
-    width: 80%;
+    width: 100%;
 
     padding: var(--todo-padding);
     font-size: 1rem;
@@ -142,7 +142,6 @@ nav button:hover {
 
 .add-project-form .form-btns {
     gap: 5px;
-    width: 80%;
 
     display: flex;
     justify-content: start;

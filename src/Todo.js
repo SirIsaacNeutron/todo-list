@@ -1,5 +1,7 @@
 import { format } from "date-fns"
 
+import LocalStorage from "./LocalStorage"
+
 export default class Todo {
     constructor(title, dueDate, priority) {
         this.title = title
@@ -51,6 +53,12 @@ export default class Todo {
                     todoTitle.textContent = todoTitleInput.value
 
                     todoTitleInput.replaceWith(todoTitle)
+                    
+                    // Simply call render every time you change anything about a Todo
+                    // and the LocalStorage version of the TodoList will get updated!
+                    // This is a very inefficient way of doing things, but
+                    // premature optimization is the root of all evil in programming :)
+                    todoListRender()
                 }
             })
 
@@ -77,6 +85,8 @@ export default class Todo {
                 this.dueDate = dateString
                 todoDate.textContent = dateString
                 dateInput.replaceWith(todoDate)
+
+                todoListRender()
             })
 
             todoDate.replaceWith(dateInput)
@@ -100,6 +110,8 @@ export default class Todo {
                 todo.classList.add("low-priority")
                 this.priority = "Low"
             }
+
+            todoListRender()
         })
 
         todo.appendChild(todoDate)

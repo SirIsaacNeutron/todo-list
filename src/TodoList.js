@@ -1,9 +1,11 @@
 import Todo from "./Todo"
 
+import LocalStorage from "./LocalStorage"
+
 export default class TodoList {
-    constructor(title, list=[]) {
+    constructor(title) {
         this.title = title
-        this.list = list
+        this.list = []
 
         this.addTodo = this.addTodo.bind(this)
         this.render = this.render.bind(this)
@@ -13,6 +15,8 @@ export default class TodoList {
         this.list.push(todo)
     }
 
+    // For now I'm using render() as the place for all DOM-related stuff
+    // It's very natural to me as someone who's worked with React in the past
     render() {
         // console.log(this.list)
         const main = document.querySelector("main")
@@ -78,7 +82,8 @@ export default class TodoList {
                 const newTodo = new Todo(newTodoTitle, "Click to add date", "Low")
                 this.addTodo(newTodo)
 
-                // Redraw the whole page
+                // Redraw the whole page to display the new Todo
+                // It will be displayed during the iteration through this.list
                 this.render()
             })
 
@@ -87,5 +92,10 @@ export default class TodoList {
 
         todos.appendChild(addTodoBtn)
         main.appendChild(todos)
+
+        // render() is called every time the TodoList or one of its Todos is altered
+        // This makes sure the LocalStorage is updated to whatever is being rendered on the screen
+        // Pretty convenient!
+        LocalStorage.setTodoList(this)
     }
 }

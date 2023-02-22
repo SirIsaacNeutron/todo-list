@@ -1,4 +1,5 @@
-import TodoList from "./TodoList";
+import TodoList from "./TodoList"
+import Todo from "./Todo"
 
 export default class LocalStorage {
     static setTodoList(todoList) {
@@ -12,7 +13,7 @@ export default class LocalStorage {
         listObj.list = listObjList
 
         localStorage.setItem(todoList.title, JSON.stringify(listObj))
-        console.log(JSON.stringify(listObj))
+        //console.log(JSON.stringify(listObj))
     }
 
     static isTodoListStored(title) {
@@ -22,7 +23,11 @@ export default class LocalStorage {
     static getTodoList(title) {
         const listObj = JSON.parse(localStorage.getItem(title))
 
-        const todoList = new TodoList(listObj.title, listObj.list)
+        const todoList = new TodoList(listObj.title)
+
+        for (const todoObj of listObj.list) {
+            todoList.addTodo(new Todo(todoObj.title, todoObj.dueDate, todoObj.priority))
+        }
 
         return todoList
     }

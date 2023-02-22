@@ -2,9 +2,12 @@ import "./styles.css"
 
 import TodoList from "./TodoList"
 import ProjectList from "./ProjectList"
+import LocalStorage from "./LocalStorage"
 
 const todoLists = {}
 const projectList = new ProjectList()
+
+LocalStorage.loadTodoListsInto(todoLists)
 
 function addButtonListeners() {
     const mainLinks = document.querySelector(".main-links")

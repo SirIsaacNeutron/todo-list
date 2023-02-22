@@ -1,9 +1,9 @@
 import Todo from "./Todo"
 
 export default class TodoList {
-    constructor(title) {
+    constructor(title, list=[]) {
         this.title = title
-        this.list = []
+        this.list = list
 
         this.addTodo = this.addTodo.bind(this)
         this.render = this.render.bind(this)

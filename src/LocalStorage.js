@@ -54,7 +54,11 @@ export default class LocalStorage {
         const linkButtons = [...mainLinks.children]
         const linkButtonNames = linkButtons.map(buttonElement => buttonElement.textContent)
 
-        const projectNames = Object.keys(localStorage).filter(key => !linkButtonNames.includes(key))
+        // The check for 'debug' is to make the project work on GitHub Pages
+        // The 'debug' key seems to always be there on GitHub Pages's localStorage
+        // I didn't know this when I made this project... this is the fastest way to fix it
+        // :P lesson learned: don't load things from localStorage the way I did in this project
+        const projectNames = Object.keys(localStorage).filter(key => !linkButtonNames.includes(key) && key !== "debug")
 
         projectNames.forEach(name => {
             const list = LocalStorage.getTodoList(name)

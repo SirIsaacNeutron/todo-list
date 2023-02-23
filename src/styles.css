@@ -15,6 +15,9 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+
+    font-family: 'Merriweather', serif;
+    font-weight: 100;
 }
 
 body {
@@ -45,6 +48,13 @@ header {
 
     grid-row: 1;
     grid-column: 1 / -1;
+}
+
+header h1 {
+    font-weight: 400;
+    font-family: 'Tourney', cursive;
+
+    font-size: 3rem;
 }
 
 nav {
@@ -87,6 +97,8 @@ nav button:hover {
     margin-left: var(--header-padding);
     margin-top: 20px;
     margin-bottom: 10px;
+
+    font-weight: 400;
 }
 
 .project-links {
@@ -164,6 +176,8 @@ main {
 
 main h2 {
     margin-bottom: 10px;
+
+    font-weight: 300;
 }
 
 .todos {

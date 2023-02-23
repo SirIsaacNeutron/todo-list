@@ -45,7 +45,17 @@ export default class LocalStorage {
         })
     }
 
-    static addProject() {
+    static loadProjectsInto(projectList) {
+        const mainLinks = document.querySelector(".main-links")
+        const linkButtons = [...mainLinks.children]
+        const linkButtonNames = linkButtons.map(buttonElement => buttonElement.textContent)
+
+        const projectNames = Object.keys(localStorage).filter(key => !linkButtonNames.includes(key))
+
+        projectNames.forEach(name => {
+            const list = LocalStorage.getTodoList(name)
+            projectList.addProject(list)
+        })
 
     }
 }

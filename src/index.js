@@ -8,6 +8,7 @@ const todoLists = {}
 const projectList = new ProjectList()
 
 LocalStorage.loadTodoListsInto(todoLists)
+LocalStorage.loadProjectsInto(projectList)
 
 function addButtonListeners() {
     const mainLinks = document.querySelector(".main-links")

@@ -1,3 +1,4 @@
+import LocalStorage from "./LocalStorage"
 import TodoList from "./TodoList"
 
 export default class ProjectList {
@@ -5,6 +6,11 @@ export default class ProjectList {
         this.projectList = []
 
         this.render = this.render.bind(this)
+        this.addProject = this.addProject.bind(this)
+    }
+
+    addProject(todoList) {
+        this.projectList.push(todoList)
     }
 
     render() {
@@ -90,8 +96,28 @@ export default class ProjectList {
             form.addEventListener("submit", e => {
                 e.preventDefault()
 
+                const projectNames = this.projectList.filter(todoList => todoList.title)
+
+                if (projectNames.includes(input.value)) {
+                    alert("Projects can't have the same name as each other.")
+                    return
+                }
+
+                const mainLinks = document.querySelector(".main-links")
+                const linkButtons = [...mainLinks.children]
+                const linkButtonNames = linkButtons.map(buttonElement => buttonElement.textContent)
+
+                if (linkButtonNames.includes(input.value)) {
+                    alert("Projects can't be named after the Home, Today, and Week buttons.")
+                    return
+                }
+
                 const newProject = new TodoList(input.value)
                 this.projectList.push(newProject)
+
+                // Re-using this method forces me to add checks for duplicate names
+                // to this event listener
+                LocalStorage.setTodoList(newProject)
 
                 // Redraw the project list
                 this.render()

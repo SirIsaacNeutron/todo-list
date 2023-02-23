@@ -34,6 +34,8 @@ export default class ProjectList {
                 const main = document.querySelector("main")
                 main.replaceChildren()
 
+                LocalStorage.remove(currentProject.title)
+
                 this.render()
             })
 
@@ -115,7 +117,7 @@ export default class ProjectList {
                 const newProject = new TodoList(input.value)
                 this.projectList.push(newProject)
 
-                // Re-using this method forces me to add checks for duplicate names
+                // Re-using this method requires me to add checks for duplicate names
                 // to this event listener
                 LocalStorage.setTodoList(newProject)
 

@@ -16,6 +16,10 @@ export default class LocalStorage {
         //console.log(JSON.stringify(listObj))
     }
 
+    static remove(key) {
+        localStorage.removeItem(key)
+    }
+
     static isTodoListStored(title) {
         return localStorage.getItem(title) !== null
     }

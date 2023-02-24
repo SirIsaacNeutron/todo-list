@@ -1,2 +1,2 @@
 # todo-list
-A todo list application for the Odin Project
+A todo list application for [the Odin Project](https://www.theodinproject.com/lessons/node-path-javascript-todo-list). You can view the website live at https://sirisaacneutron.github.io/todo-list/.
